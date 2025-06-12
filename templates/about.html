@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+  <meta charset="UTF-8" />
+  <title>About Me – Tushar Shroff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #000000;
+      color: #fff;
+      font-family: 'Unica One', sans-serif;
+    }
+
+    .logo {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .logo img {
+      height: 80px;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 24px;
+      margin: 30px 0;
+      letter-spacing: 2px;
+    }
+
+    .about-grid {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 0 5vw;
+      gap: 2vw;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #000000;
+      padding: 30px;
+      border-radius: 30px;
+      flex: 1 1 300px;
+      min-height: 300px;
+      box-sizing: border-box;
+      box-shadow: 0 0 15px rgb(0, 0, 0);
+    }
+
+    video {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    img.profile {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    .header-bar {
+  background-color: #000000;
+  color: rgb(255, 174, 0);
+  font-size: 28px;
+  text-align: center;
+  padding: 12px 0;
+  margin: 20px auto;
+  border-radius: 10px;
+  width: 90%;
+  font-family: 'Unica One', sans-serif;
+  letter-spacing: 2px;
+}
+
+.logo img {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.logo img:hover {
+  filter: drop-shadow(0 0 8px #fbfbfb);
+  transform: scale(1.03);
+}
+body {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+  </style>
+</head>
+<body>
+<div class="logo">
+  <a href="/">
+    <img src="{{ url_for('static', filename='signature.jpeg') }}" alt="Signature" style="cursor: pointer;" />
+  </a>
+</div>
+
+  <div class="header-bar">About Me</div>
+
+  <div class="about-grid">
+    <div class="card">
+      <p>
+    Hi there, thank you for being here! My name is Tushar and I’m a Dubai-born, Ontario-based recording artist. I’ve lived in 4 different countries so far and have been on the move a lot; I was born in Dubai, and I lived there for the first 18 years of my life.
+</p>
+
+<p>
+    I then went to Mississippi where I studied economics with a focus in mathematics on an academic scholarship. After Mississippi, I moved to Dubai for a few years where I worked in finance. I’m now in Toronto.
+</p>
+
+<p>
+    Needless to say, my life has been atypical, and I’ve been a bit of a rolling stone. However, the one thing that has always remained constant is my art. I started my musical journey at the age of 8 and have never really stepped away.
+</p>
+
+<p>
+    Creating work of my own has been both my reprieve in times of stress, and my mood booster during times of joy. My music is the one domain where I can express so much of what I otherwise cannot.
+</p>
+
+<p>
+    Outside of music, I really enjoy running, swimming and hanging out with the people I love.
+</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/about-profile.PNG') }}" class="profile" alt="Tushar">
+    </div>
+    <div class="card">
+      <video autoplay muted loop playsinline>
+  <source src="{{ url_for('static', filename='videos/gold-reel.MP4') }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+    </div>
+  </div>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('fade-in');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+  <meta charset="UTF-8" />
+  <title>The Songs – Tushar Shroff</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Unica+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000000;
+      color: #d6d6d6;
+      font-family: 'DM Serif Display', serif;
+      opacity: 0;
+      transition: opacity 0.7s ease-in-out;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    .logo {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .logo img {
+      height: 80px;
+      cursor: pointer;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      filter: drop-shadow(0 0 8px #fbfbfb);
+      transform: scale(1.03);
+    }
+
+    .header-bar {
+      background-color: #000000;
+      color: rgb(255, 174, 0);
+      font-size: 28px;
+      text-align: center;
+      padding: 12px 0;
+      margin: 20px auto 40px;
+      border-radius: 10px;
+      width: 90%;
+      letter-spacing: 2px;
+      font-family: 'Unica One', sans-serif;
+    }
+
+    .song-entry {
+      display: flex;
+      align-items: flex-start;
+      background-color: #111111;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 20px;
+      width: 95%;
+      max-width: 1400px;
+      gap: 30px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.06);
+    }
+
+    .song-cover {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .song-description {
+      flex: 1;
+      font-size: 17px;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .song-description p {
+      margin: 8px 0;
+    }
+
+    .song-description ul {
+      padding-left: 18px;
+      margin: 8px 0;
+    }
+
+    .song-description li {
+      margin: 6px 0;
+      list-style-position: inside;
+      text-indent: -1em;
+      padding-left: 1em;
+    }
+
+    .centered-text {
+      flex: 1;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-style: italic;
+      font-size: 18px;
+      color: #cccccc;
+    }
+
+    @media (max-width: 600px) {
+      .song-entry {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .song-cover {
+        margin-bottom: 16px;
+      }
+
+      .song-description,
+      .centered-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <a href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='signature.jpeg') }}" alt="Signature Logo">
+    </a>
+  </div>
+
+  <div class="header-bar">The Songs</div>
+
+  <!-- Song 1 -->
+  <div class="song-entry">
+    <img src="{{ url_for('static', filename='images/Heal.JPG') }}" alt="Song Cover 1" class="song-cover">
+    <div class="song-description">
+      <p>Raised in a culture that prioritized ambition and achievement, my love for music was met with support—but also a strong expectation to pursue a more traditional path. I pushed through, doing what was expected, but the tension between my obligations and my dreams often left me feeling torn and frustrated.</p>
+      <p>During those times when I felt most lost and disconnected, I found solace in two things: physical activity and music. It was in my small apartment in Mississippi, as a university junior grappling with that alienation, that I wrote "Heal." That song emerged from a place of deep inner conflict, when the weight of uncertainty felt overwhelming.</p>
+      <p>Over time, I’ve realized that I’m not alone in these struggles. We all face this tug-of-war between our deepest desires and the limits of what seems attainable. It doesn’t mean life is falling apart or that we’re failing—it's simply a part of the human experience.</p>
+      <p>"Heal" is a gentle reminder that after every winter, spring inevitably arrives. My journey has taught me that the key is to seek clarity on what you truly want, focus on what you can control, and trust that everything else will fall into place.</p>
+    </div>
+  </div>
+
+  <!-- Song 2 -->
+  <div class="song-entry">
+    <img src="{{ url_for('static', filename='images/Gold.JPG') }}" alt="Song Cover 2" class="song-cover">
+    <div class="song-description">
+      <p>"Gold" is a track I’d prefer not to explain too explicitly—part of its power lies in allowing each listener to find their own meaning in it. That said, from a creator’s perspective, the essence of the song, for me, revolves around three ideas:</p>
+      <ul>
+        <li>The illusion of appearances—the gap between what shines and what’s real.</li>
+        <li>Vanity and the seduction of image.</li>
+        <li>Transformation and the quiet force of personal evolution.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Song 3 -->
+  <div class="song-entry">
+    <img src="{{ url_for('static', filename='images/WaitingRoom.PNG') }}" alt="Song Cover 3" class="song-cover">
+    <div class="centered-text">Coming Soon.</div>
+  </div>
+
+  <!-- Song 4 -->
+  <div class="song-entry">
+    <img src="{{ url_for('static', filename='images/ChangingTides.PNG') }}" alt="Song Cover 4" class="song-cover">
+    <div class="centered-text">Coming Soon.</div>
+  </div>
+
+  <!-- Fade-in script -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+  <meta charset="UTF-8" />
+  <title>Contact – Tushar Shroff</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Unica+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000000;
+      color: #d6d6d6;
+      font-family: 'DM Serif Display', serif;
+      opacity: 0;
+      transition: opacity 0.7s ease-in-out;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    .logo {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .logo img {
+      height: 80px;
+      cursor: pointer;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      filter: drop-shadow(0 0 8px #fbfbfb);
+      transform: scale(1.03);
+    }
+
+    .header-bar {
+      background-color: #000000;
+      color: rgb(255, 174, 0);
+      font-size: 28px;
+      text-align: center;
+      padding: 12px 0;
+      margin: 20px auto 40px;
+      border-radius: 10px;
+      width: 90%;
+      letter-spacing: 2px;
+      font-family: 'Unica One', sans-serif;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 30px;
+      text-align: center;
+    }
+
+    .contact-text {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 60px;
+    }
+
+    .icon-grid {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background-color: #111111;
+      border-radius: 16px;
+      width: 180px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.04);
+      transition: transform 0.3s ease;
+    }
+
+    .icon-card:hover {
+      transform: scale(1.03);
+    }
+
+    .icon-card img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .icon-label {
+      font-size: 15px;
+      color: #d6d6d6;
+      word-break: break-word;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media (max-width: 600px) {
+      .icon-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .icon-card {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <a href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='signature.jpeg') }}" alt="Signature Logo">
+    </a>
+  </div>
+
+  <div class="header-bar">Contact</div>
+
+  <div class="contact-container">
+    <div class="contact-text">
+      I look forward to hearing from you — whether it's for licensing, sync, or collaboration opportunities… or just to say “Hello” :)
+    </div>
+
+    <div class="icon-grid">
+      <!-- Email -->
+      <a href="mailto:tzshroff@hotmail.com" class="icon-card">
+        <img src="{{ url_for('static', filename='images/email-icon.png') }}" alt="Email Icon">
+        <div class="icon-label">tzshroff@hotmail.com</div>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/tzshroff" target="_blank" class="icon-card">
+        <img src="{{ url_for('static', filename='images/Instagram-icon.png') }}" alt="Instagram Icon">
+        <div class="icon-label">@tzshroff</div>
+      </a>
+
+      <!-- Linktree -->
+      <a href="https://linktr.ee/tzshroff" target="_blank" class="icon-card">
+        <img src="{{ url_for('static', filename='images/linktree-icon.png') }}" alt="Linktree Icon">
+        <div class="icon-label">linktr.ee/tzshroff</div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+  </script>
+
+</body>
+</html>

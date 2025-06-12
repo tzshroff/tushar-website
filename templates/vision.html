@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+  <meta charset="UTF-8" />
+  <title>The Vision – Tushar Shroff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Unica One', sans-serif;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    .logo {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .logo img {
+      height: 80px;
+      transition: filter 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .logo img:hover {
+      filter: drop-shadow(0 0 8px #fbfbfb);
+      transform: scale(1.03);
+    }
+
+    .header-bar {
+      background-color: #000000;
+      color: rgb(255, 174, 0);
+      font-size: 28px;
+      text-align: center;
+      padding: 12px 0;
+      margin: 20px auto 40px;
+      border-radius: 10px;
+      width: 90%;
+      letter-spacing: 2px;
+    }
+
+    .about-grid {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 5vw;
+      gap: 2vw;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: #000000;
+      padding: 20px;
+      border-radius: 30px;
+      flex: 1 1 320px;
+      max-width: 360px;
+      min-height: 300px;
+      box-sizing: border-box;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card p {
+      text-align: left;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    video, img.profile {
+      width: 100%;
+      border-radius: 20px;
+      max-height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <a href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='signature.jpeg') }}" alt="Signature Logo">
+    </a>
+  </div>
+
+  <div class="header-bar">The Vision</div>
+
+  <div class="about-grid">
+    <div class="card">
+      <p>
+        Lately, I’ve found it harder to come across work—especially in the mainstream—that feels personal, unbound, or truly lived. And the more I analyze the type of work that inspired me to start a journey of my own, the more I realize that it is work of that nature that has helped me find meaning through art.
+        <br><br>
+        Maybe my own work disappears into obscurity. Maybe it’s unearthed decades after I’m gone. Maybe it resonates and takes off tomorrow; I have no idea.
+        <br><br>
+        What I do know is this: my intention is to try to create work that speaks to us all—drawn from a place of truth, not trend. I’m not building to hit targets. My goal is to build something that endures the test of time. A body of work that stands for something; not just made to land, but to last.
+        <br><br>
+        Meanwhile, my Instagram remains a place where I share snippets of both my original work and covers of songs that have inspired me along my journey.
+        <br><br>
+        If you’re listening/watching/reading—realize that it means more to me than you will ever know.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/visionimage.JPG') }}" class="profile" alt="Tushar Vision">
+    </div>
+
+    <div class="card">
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/visionvid.MP4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+  </script>
+</body>
+</html>

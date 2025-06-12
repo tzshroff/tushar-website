@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Official Website Of Tushar Shroff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+      cursor: none;
+    }
+
+    .logo img {
+      margin-top: 5px;
+      height: 100px;
+    }
+
+    .nav {
+      margin: -20px 0 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 180px;
+      flex-wrap: wrap;
+    }
+
+    .nav button {
+      font-family: 'Unica One', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #d3c9c1eb;
+      background: none;
+      border: none;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav button:hover {
+      transform: translateY(-3px);
+      border-color: #fff;
+    }
+
+    #am-piano {
+      display: inline-block;
+      margin-top: -10px;
+    }
+
+    .keys {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      flex-wrap: wrap;
+    }
+
+    .key-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+    }
+
+    .key {
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(to bottom, #333, #111);
+      border: 1px solid #666;
+      border-radius: 3px;
+      font-size: 0;
+      cursor: pointer;
+    }
+
+    .black-key {
+      width: 24px;
+      height: 75px;
+      background: linear-gradient(to bottom, #000, #222);
+      position: absolute;
+      top: 0;
+      left: 28px;
+      z-index: 2;
+      border-radius: 3px;
+      border: 1px solid #444;
+      font-size: 0;
+      cursor: pointer;
+    }
+
+    .highlighted {
+      background-color: #ffffff !important;
+      box-shadow: 0 0 10px #ffd09a;
+    }
+
+    .ambient {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .ambient-video-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ambient-video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      background: #a9a08c;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transition: transform 0.1s ease, opacity 0.2s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+        margin: 10px 0 20px;
+      }
+
+      .nav button {
+        font-size: 18px;
+        padding: 8px 16px;
+      }
+
+      .key-wrapper {
+        width: 30px;
+      }
+
+      .key {
+        height: 100px;
+      }
+
+      .black-key {
+        height: 50px;
+        left: 20px;
+      }
+
+      .ambient {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="{{ url_for('static', filename='signature.jpeg') }}" alt="Signature" />
+  </div>
+
+  <div class="nav">
+    <button id="aboutBtn">About Me</button>
+    <button id="visionBtn">The Vision</button>
+    <button id="songsBtn">The Songs</button>
+    <button id="contactBtn">Contact</button>
+  </div>
+
+  <div id="am-piano" class="piano">
+    <div class="keys">
+      <div class="key-wrapper"><button class="key" data-note="F">F</button><button class="black-key" data-note="F#">F#</button></div>
+      <div class="key-wrapper"><button class="key" data-note="G">G</button><button class="black-key" data-note="G#">G#</button></div>
+      <div class="key-wrapper"><button class="key" data-note="A">A</button><button class="black-key" data-note="A#">A#</button></div>
+      <div class="key-wrapper"><button class="key" data-note="B">B</button></div>
+      <div class="key-wrapper"><button class="key" data-note="C">C</button><button class="black-key" data-note="C#">C#</button></div>
+      <div class="key-wrapper"><button class="key" data-note="D">D</button><button class="black-key" data-note="D#">D#</button></div>
+      <div class="key-wrapper"><button class="key" data-note="E">E</button></div>
+    </div>
+  </div>
+
+  <div class="ambient">
+    <div class="ambient-video-wrapper">
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/homepage.mp4.mp4') }}" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <script>
+    const unlockSequences = {
+      about: ['A', 'C', 'E'],
+      vision: ['G', 'B', 'D'],
+      songs: ['F', 'A', 'C'],
+      contact: ['C', 'D', 'E'],
+    };
+
+    let currentInput = [];
+    const maxInputLength = 3;
+
+    function highlightKeys(sequence) {
+      clearAllHighlights();
+      sequence.forEach(note => {
+        const key = document.querySelector(`[data-note="${note}"]`);
+        if (key) key.classList.add('highlighted');
+      });
+    }
+
+    function clearAllHighlights() {
+      document.querySelectorAll('.key, .black-key').forEach(k => k.classList.remove('highlighted'));
+    }
+
+    function arraysEqual(a, b) {
+      return a.length === b.length && a.every((v, i) => v === b[i]);
+    }
+
+    function handleNoteInput(note) {
+      currentInput.push(note);
+      if (currentInput.length > maxInputLength) currentInput.shift();
+      highlightKeys(currentInput);
+
+      for (const [section, sequence] of Object.entries(unlockSequences)) {
+        if (arraysEqual(currentInput, sequence)) {
+          setTimeout(() => {
+            window.location.href = `/${section}`;
+          }, 1000);
+          break;
+        }
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      const note = e.key.toUpperCase();
+      if (!['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(note)) return;
+      handleNoteInput(note);
+    });
+
+    document.getElementById('aboutBtn').addEventListener('click', () => highlightKeys(unlockSequences.about));
+    document.getElementById('visionBtn').addEventListener('click', () => highlightKeys(unlockSequences.vision));
+    document.getElementById('songsBtn').addEventListener('click', () => highlightKeys(unlockSequences.songs));
+    document.getElementById('contactBtn').addEventListener('click', () => highlightKeys(unlockSequences.contact));
+
+    document.querySelectorAll('.key, .black-key').forEach(key => {
+      key.addEventListener('click', () => {
+        const note = key.dataset.note;
+        const audio = new Audio(`/static/notes/${note}.ogg`);
+        audio.play().catch(() => {});
+        handleNoteInput(note);
+      });
+    });
+
+    const cursor = document.createElement('div');
+    cursor.id = 'custom-cursor';
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', e => {
+      cursor.style.top = `${e.clientY}px`;
+      cursor.style.left = `${e.clientX}px`;
+    });
+    document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+    document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+  </script>
+</body>
+</html>
